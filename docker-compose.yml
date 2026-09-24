@@ -1,0 +1,22 @@
+services:
+  control-api:
+    image: node:22-alpine
+    working_dir: /workspace
+    command: sh -c "corepack enable && pnpm install && pnpm --filter @nebulah/control-api dev"
+    env_file: .env
+    volumes:
+      - .:/workspace
+    ports:
+      - "8787:8787"
+
+  discord-bot:
+    image: node:22-alpine
+    working_dir: /workspace
+    command: sh -c "corepack enable && pnpm install && pnpm --filter @nebulah/discord-bot dev"
+    env_file: .env
+    environment:
+      CONTROL_API_URL: http://control-api:8787
+    volumes:
+      - .:/workspace
+    depends_on:
+      - control-api
