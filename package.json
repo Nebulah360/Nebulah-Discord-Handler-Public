@@ -1,0 +1,22 @@
+{
+  "name": "nebulah-discord-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Discord-facing control plane for the Nebulah software suite.",
+  "license": "MIT",
+  "packageManager": "pnpm@10.17.1",
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm --parallel --filter @nebulah/control-api --filter @nebulah/discord-bot dev",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "start": "pnpm --filter @nebulah/control-api start & pnpm --filter @nebulah/discord-bot start"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "typescript": "^5.9.2"
+  }
+}
